@@ -1,5 +1,30 @@
 [
-  { "file": "1-checklist.jpg", "path": "/", "viewport": { "width": 1280, "height": 800 } },
-  { "file": "2-silver.jpg", "path": "/", "grade": "silver", "viewport": { "width": 1280, "height": 800 } },
-  { "file": "3-bronze.jpg", "path": "/", "grade": "bronze", "scroll": 1400, "viewport": { "width": 1280, "height": 800 } }
+  {
+    "file": "01-checklist.png",
+    "path": "/",
+    "viewport": { "width": 1280, "height": 800 },
+    "click": ["#check-2", "#check-17", "#check-18", "#check-20", "#check-21"],
+    "shows": "All trophies, saved progress, both backup controls and the Chapter 1 meditation guide."
+  },
+  {
+    "file": "02-roadmap.png",
+    "path": "/",
+    "viewport": { "width": 1280, "height": 800 },
+    "click": ["#spoilers", "#roadmap-tab"],
+    "shows": "Story milestones in chapter order, the early timing risk and trophy versus in-game 100% counts."
+  },
+  {
+    "file": "03-collectibles.png",
+    "path": "/",
+    "viewport": { "width": 1280, "height": 800 },
+    "click": ["[data-kind=collectibles]", "[data-trophy='30']"],
+    "shows": "Collectibles filter and the card-set guide with sources."
+  },
+  {
+    "file": "04-spoilers.png",
+    "path": "/",
+    "viewport": { "width": 1280, "height": 800 },
+    "click": ["#check-2", "#check-3", "[data-kind=story]", "[data-trophy='8']"],
+    "shows": "Earned story entries revealed while unearned entries stay hidden."
+  }
 ]

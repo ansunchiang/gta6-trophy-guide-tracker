@@ -11,7 +11,9 @@ const root = resolve(fileURLToPath(new URL('./app', import.meta.url)));
 const args = process.argv.slice(2);
 const portIndex = args.indexOf('--port');
 const requested = portIndex === -1 ? 8080 : Number(args[portIndex + 1]);
-const port = Number.isInteger(requested) && requested > 0 && requested < 65536 ? requested : 8080;
+if (!Number.isInteger(requested) || requested < 0 || requested > 65535) {
+  throw new Error('Use --port followed by a number from 0 to 65535.');
+}
 
 const MIME: Record<string, string> = {
   '.html': 'text/html; charset=utf-8',
@@ -29,7 +31,11 @@ const MIME: Record<string, string> = {
   '.webmanifest': 'application/manifest+json',
 };
 
-createServer((request, response) => {
+const server = createServer((request, response) => {
+  if (request.method !== 'GET' && request.method !== 'HEAD') {
+    response.writeHead(405, { allow: 'GET, HEAD' }).end('method not allowed');
+    return;
+  }
   const url = new URL(request.url ?? '/', 'http://localhost');
   let pathname: string;
   try {
@@ -58,7 +64,11 @@ createServer((request, response) => {
     'content-length': size,
     'cache-control': 'no-store',
   });
-  createReadStream(file).pipe(response);
-}).listen(port, '127.0.0.1', () => {
-  console.log(`app/ is on http://localhost:${port}`);
+  if (request.method === 'HEAD') response.end();
+  else createReadStream(file).on('error', () => response.destroy()).pipe(response);
+});
+
+server.listen(requested, '127.0.0.1', () => {
+  const address = server.address();
+  if (address && typeof address !== 'string') console.log(`http://127.0.0.1:${address.port}`);
 });
