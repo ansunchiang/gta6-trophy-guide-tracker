@@ -101,7 +101,7 @@
     {
       "id": 14, "name": "A Long Road", "description": "Attain 100% Completion.", "grade": "gold",
       "kind": "activities", "missable": false, "stage": "completion",
-      "guide": "After the story, open Progress › Stats › 100% Completion. Earlier progress carries in. Use the roadmap’s in-game targets: go past the trophy thresholds for stunts, card sets and challenges. Reserve final cleanup for task groups with zero slack, including 33 underwater finds, all range golds and all drone trials.",
+      "guide": "After the story, open Progress › Stats › 100% Completion. Earlier progress carries in. Use the roadmap’s target table and expand Remaining 100% targets for the other counters. Go past the trophy thresholds for stunts, card sets and challenges. Clear every underwater find, range gold and drone trial.",
       "sources": ["completion", "roadmap"]
     },
     {

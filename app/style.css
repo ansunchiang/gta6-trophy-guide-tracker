@@ -161,6 +161,11 @@ select { border: 1px solid var(--line); border-radius: 7px; background: var(--ca
 .milestones thead th { background: #eeebfb; color: var(--indigo); }
 .milestones th { font-weight: 700; }
 .milestones td:last-child { font-weight: 800; }
+.remaining-targets { margin-top: 8px; font-size: 14px; }
+.remaining-targets summary { cursor: pointer; color: var(--indigo); font-weight: 700; }
+.remaining-targets dl { margin: 8px 0 0; }
+.remaining-targets dt { font-weight: 750; margin-top: 7px; }
+.remaining-targets dd { margin-left: 0; color: var(--muted); line-height: 1.4; }
 footer { display: flex; gap: 12px; justify-content: space-between; margin: 24px 0 20px; border-top: 1px solid var(--line); padding-top: 13px; color: var(--muted); font-size: 12px; font-weight: 700; }
 dialog { max-width: min(440px, calc(100% - 32px)); color: var(--ink); background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 20px; }
 dialog::backdrop { background: #202133ad; }

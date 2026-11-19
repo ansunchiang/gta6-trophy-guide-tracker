@@ -22,6 +22,14 @@ const targets = [
   ['Gang operations', '1 per gang', '39 total', 43]
 ];
 
+const otherTargets = [
+  ['Jobs', '100 optional tasks, 22 bank jobs, 7 payday loan jobs, 34 of 35 smash ’n’ grabs and 50 stickups.'],
+  ['Fencing', '$100,000 each in narcotics and jewelry, $200,000 in vehicles and $250,000 in marked bills.'],
+  ['Exploration', '33 underwater discoveries, 5 Kenton sets, 30 books, magazines or comics, 100 flamingos, 2 unique playlists and 70 styles.'],
+  ['Activities', '10 race-challenge golds, 4 video games played, 5 pool opponents defeated, 2 mini golf locations played, 90 basketball hoops and 15 target decks.'],
+  ['Discovery', '50 standard-issue weapons and 100 animals studied.']
+];
+
 function stageCard(stage, number, trophies, earned, openStage) {
   const items = trophies.filter(trophy => trophy.stage === stage);
   const done = items.filter(trophy => earned.has(trophy.id)).length;
@@ -77,6 +85,16 @@ function completionTargets(openTrophy) {
   return table;
 }
 
+function remainingTargets() {
+  const details = element('details', 'remaining-targets');
+  const groups = element('dl');
+  for (const [label, targets] of otherTargets) {
+    groups.append(element('dt', '', label), element('dd', '', targets));
+  }
+  details.append(element('summary', '', 'Remaining 100% targets'), groups);
+  return details;
+}
+
 export function renderRoadmap(trophies, sources, earned, concealed, openTrophy, openStage) {
   const route = element('div', 'route-grid');
   const card = (stage, number) => stageCard(stage, number, trophies, earned, openStage);
@@ -98,7 +116,7 @@ export function renderRoadmap(trophies, sources, earned, concealed, openTrophy, 
   complete.append(
     element('p', '', 'Scan new vehicles and take optional jobs as you go. After the credits, open Progress › Stats › 100% Completion to finish A Long Road.'),
     completionTargets(openTrophy),
-    element('p', '', 'Allow time for 33 underwater discoveries, 100 optional tasks, 100 animal studies and all 15 of Bret’s target decks.'),
+    remainingTargets(),
     sourceLinks(['completion', 'roadmap'], sources)
   );
 
